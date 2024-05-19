@@ -10,6 +10,21 @@ public class CubePool : MonoBehaviour
 
     private List<Cube> _cubes = new List<Cube>();
 
+    private void OnEnable()
+    {
+        foreach (var cube in _cubes)
+        {
+            cube.Died += OnDiedCube;
+            ResetCube(cube);
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var cube in _cubes)
+            cube.Died -= OnDiedCube;
+    }
+
     private void Start()
     {
         StartCoroutine(CreateCubes());
@@ -17,13 +32,17 @@ public class CubePool : MonoBehaviour
 
     public bool TryGetCube(out Cube cube)
     {
+        cube = null;
+
+        if (enabled == false)
+            return false;
+
         cube = _cubes.FirstOrDefault(cube => cube.gameObject.activeSelf == false);
 
         if (cube == null)
             return false;
 
         cube.gameObject.SetActive(true);
-        cube.transform.parent = null;
         return true;
     }
 
@@ -39,9 +58,11 @@ public class CubePool : MonoBehaviour
         }
     }
 
-    private void OnDiedCube(Cube cube)
+    private void OnDiedCube(Cube cube) => ResetCube(cube);
+
+    private void ResetCube(Cube cube)
     {
-        cube.transform.parent = transform;
+        cube.transform.localPosition = Vector3.zero;
         cube.gameObject.SetActive(false);
     }
 }

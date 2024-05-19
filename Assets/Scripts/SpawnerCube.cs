@@ -36,7 +36,7 @@ public class SpawnerCube : MonoBehaviour
 
             if (_cubePool.TryGetCube(out Cube cube) == false)
             {
-                Debug.Log("В CubePool закончились Cube!");
+                Debug.Log($"{nameof(CubePool)} не готов предоставить {nameof(Cube)}! Он отключен или в нем закончились {nameof(Cube)}!");
                 continue;
             }
 

@@ -15,7 +15,6 @@ public class Cube : MonoBehaviour
 
     public event Action<Cube> Died;
 
-
     private void Awake()
     {
         _defaultColor = _meshRenderer.material.color;
@@ -29,10 +28,10 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.TryGetComponent(out Platform platform) == false)
+        if (_isFaced)
             return;
 
-        if (_isFaced)
+        if (collision.transform.TryGetComponent(out Platform platform) == false)
             return;
 
         _isFaced = true;
