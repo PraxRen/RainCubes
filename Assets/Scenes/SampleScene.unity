@@ -336,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 99734714}
-  - component: {fileID: 99734713}
+  - component: {fileID: 99734715}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -344,22 +344,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &99734713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99734712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09893984b90c38443add66f1025ee039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cubePool: {fileID: 1278338751}
-  _timeWaitSpawn: 0.03
-  _transformMainPlatform: {fileID: 465945755}
-  _rangePositions: {x: 5, y: 5}
 --- !u!4 &99734714
 Transform:
   m_ObjectHideFlags: 0
@@ -375,6 +359,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &99734715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99734712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ab626763c43a148b6c8e3001cec6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _countActiveObjects: 0
+  _countFullObjects: 0
+  Prefab: {fileID: -3172803589712332690, guid: 6a54258cf09fa3d459c6f5bc67413f25, type: 3}
+  _capacity: 250
+  _timeWaitSpawn: 0.02
+  _transformMainPlatform: {fileID: 465945755}
+  _rangePositions: {x: 5, y: 5}
 --- !u!1 &147266487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1817,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278338752}
-  - component: {fileID: 1278338751}
   m_Layer: 0
   m_Name: Pool
   m_TagString: Untagged
@@ -1822,20 +1824,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1278338751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278338750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 356103a8d08c13549a79ba9783a8a096, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabCube: {fileID: -3172803589712332690, guid: 6a54258cf09fa3d459c6f5bc67413f25, type: 3}
-  _count: 400
 --- !u!4 &1278338752
 Transform:
   m_ObjectHideFlags: 0

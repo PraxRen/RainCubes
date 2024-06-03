@@ -2,28 +2,30 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Cube : MonoBehaviour
+public class Cube : MonoBehaviour, ILifetime
 {
-    private const float MinTimeLifeTime = 2f;
-    private const float MaxTimeLifeTime = 5f;
-
-    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private Renderer _renderer;
     [SerializeField] private Color[] _colors;
+    [SerializeField] private float _minTimeLifeTime = 2f;
+    [SerializeField] private float _maxTimeLifeTime = 5f;
 
     private Color _defaultColor;
     private bool _isFaced;
 
-    public event Action<Cube> Died;
+    public float MinLifetime => _minTimeLifeTime;
+    public float MaxLifetime => _maxTimeLifeTime;
+
+    public event Action<ILifetime> Died;
 
     private void Awake()
     {
-        _defaultColor = _meshRenderer.material.color;
+        _defaultColor = _renderer.material.color;
     }
 
     private void OnDisable()
     {
         _isFaced = false;
-        _meshRenderer.material.color = _defaultColor;
+        _renderer.material.color = _defaultColor;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,7 +43,7 @@ public class Cube : MonoBehaviour
 
     private IEnumerator RunTimerLife()
     {
-        float lifeTime = UnityEngine.Random.Range(MinTimeLifeTime, MaxTimeLifeTime);
+        float lifeTime = UnityEngine.Random.Range(MinLifetime, MaxLifetime);
         yield return new WaitForSeconds(lifeTime);
         Died?.Invoke(this);
     }
@@ -50,6 +52,6 @@ public class Cube : MonoBehaviour
     {
         int randomIndex = UnityEngine.Random.Range(0, _colors.Length);
         Color color = _colors[randomIndex];
-        _meshRenderer.material.color = color;
+        _renderer.material.color = color;
     }
 }
