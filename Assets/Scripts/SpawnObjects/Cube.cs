@@ -12,10 +12,10 @@ public class Cube : MonoBehaviour, ILifetime
     private Color _defaultColor;
     private bool _isFaced;
 
+    public event Action<ILifetime> Died;
+
     public float MinLifetime => _minTimeLifeTime;
     public float MaxLifetime => _maxTimeLifeTime;
-
-    public event Action<ILifetime> Died;
 
     private void Awake()
     {

@@ -9,11 +9,12 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour
 
 #endif
 
-    [SerializeField] protected T Prefab;
+    [SerializeField] private T _prefab;
     [SerializeField] private int _capacity;
 
-    protected ObjectPool<T> Pool { get; private set; }
     public IReadOnlyObjectPool<T> ReadOnlyObjectPool => Pool;
+    protected T Prefab => _prefab;
+    protected ObjectPool<T> Pool { get; private set; }
 
     private void Awake()
     {
